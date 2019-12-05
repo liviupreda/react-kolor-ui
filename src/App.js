@@ -1,13 +1,9 @@
 import React from "react";
-import Button from "@material-ui/core/Button";
-import "./App.css";
+import Palette from "./Palette";
+import seedPalettes from "./seedPalettes";
 
 function App() {
-  return (
-    <Button variant="contained" color="primary">
-      Hello World
-    </Button>
-  );
+  return <Palette {...seedPalettes[6]} />;
 }
 
 export default App;
