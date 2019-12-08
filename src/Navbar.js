@@ -1,7 +1,9 @@
 import React, { Component } from "react";
 import Slider from "rc-slider";
+import Select from "@material-ui/core/Select";
 import "rc-slider/assets/index.css";
 import "./Navbar.css";
+import { MenuItem } from "@material-ui/core";
 
 class Navbar extends Component {
   render() {
@@ -22,6 +24,13 @@ class Navbar extends Component {
               onAfterChange={changeLevel}
             />
           </div>
+        </div>
+        <div className="Navbar-select-container">
+          <Select>
+            <MenuItem value="hex">HEX - #ffffff</MenuItem>
+            <MenuItem value="rgb">RGB - rgb(255, 255, 255)</MenuItem>
+            <MenuItem value="rgba">RGBA - rgba(255, 255, 255, 1)</MenuItem>
+          </Select>
         </div>
       </header>
     );
