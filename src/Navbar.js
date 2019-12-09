@@ -6,12 +6,14 @@ import "./Navbar.css";
 import { MenuItem } from "@material-ui/core";
 import Snackbar from "@material-ui/core/Snackbar";
 import CloseIcon from "@material-ui/icons/Close";
+import IconButton from "@material-ui/core/IconButton";
 
 class Navbar extends Component {
   constructor(props) {
     super(props);
-    this.state = { colorFormat: "hex" };
+    this.state = { colorFormat: "hex", open: true };
     this.handleChange = this.handleChange.bind(this);
+    this.closeSnackbar = this.closeSnackbar.bind(this);
   }
 
   handleChange(e) {
@@ -19,9 +21,13 @@ class Navbar extends Component {
     this.props.handleChange(e.target.value);
   }
 
+  closeSnackbar() {
+    this.setState({ open: false });
+  }
+
   render() {
     const { level, changeLevel } = this.props;
-    const { colorFormat } = this.state;
+    const { colorFormat, open } = this.state;
     return (
       <header className="Navbar">
         <div className="Navbar-logo">
@@ -46,6 +52,24 @@ class Navbar extends Component {
             <MenuItem value="rgba">RGBA - rgba(255, 255, 255, 1.0)</MenuItem>
           </Select>
         </div>
+        <Snackbar
+          anchorOrigin={{
+            vertical: "bottom",
+            horizontal: "left"
+          }}
+          open={open}
+          autoHideDuration={3000}
+          message={<span id="message-id">Color Format Changed!</span>}
+          // Use the message id to make the Snackbar more accessible
+          ContentProps={{
+            "aria-describedby": "message-id"
+          }}
+          action={[
+            <IconButton onClick={this.closeSnackbar}>
+              <CloseIcon />
+            </IconButton>
+          ]}
+        />
       </header>
     );
   }
