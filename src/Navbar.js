@@ -11,13 +11,13 @@ import IconButton from "@material-ui/core/IconButton";
 class Navbar extends Component {
   constructor(props) {
     super(props);
-    this.state = { colorFormat: "hex", open: true };
-    this.handleChange = this.handleChange.bind(this);
+    this.state = { colorFormat: "hex", open: false };
+    this.handleFormatChange = this.handleFormatChange.bind(this);
     this.closeSnackbar = this.closeSnackbar.bind(this);
   }
 
-  handleChange(e) {
-    this.setState({ colorFormat: e.target.value });
+  handleFormatChange(e) {
+    this.setState({ colorFormat: e.target.value, open: true });
     this.props.handleChange(e.target.value);
   }
 
@@ -46,7 +46,7 @@ class Navbar extends Component {
           </div>
         </div>
         <div className="Navbar-select-container">
-          <Select value={colorFormat} onChange={this.handleChange}>
+          <Select value={colorFormat} onChange={this.handleFormatChange}>
             <MenuItem value="hex">HEX - #ffffff</MenuItem>
             <MenuItem value="rgb">RGB - rgb(255, 255, 255)</MenuItem>
             <MenuItem value="rgba">RGBA - rgba(255, 255, 255, 1.0)</MenuItem>
@@ -59,13 +59,23 @@ class Navbar extends Component {
           }}
           open={open}
           autoHideDuration={3000}
-          message={<span id="message-id">Color Format Changed!</span>}
+          message={
+            <span id="message-id">
+              Format Changed to {colorFormat.toUpperCase()}
+            </span>
+          }
           // Use the message id to make the Snackbar more accessible
           ContentProps={{
             "aria-describedby": "message-id"
           }}
+          onClose={this.closeSnackbar}
           action={[
-            <IconButton onClick={this.closeSnackbar}>
+            <IconButton
+              onClick={this.closeSnackbar}
+              color="inherit"
+              key="close"
+              aria-label="close"
+            >
               <CloseIcon />
             </IconButton>
           ]}
