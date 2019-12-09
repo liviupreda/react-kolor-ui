@@ -4,6 +4,8 @@ import Select from "@material-ui/core/Select";
 import "rc-slider/assets/index.css";
 import "./Navbar.css";
 import { MenuItem } from "@material-ui/core";
+import Snackbar from "@material-ui/core/Snackbar";
+import CloseIcon from "@material-ui/icons/Close";
 
 class Navbar extends Component {
   constructor(props) {
