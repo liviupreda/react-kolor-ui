@@ -14,7 +14,11 @@ class App extends Component {
     return (
       <Router>
         <Switch>
-          <Route exact path="/" render={() => <h1>Palette List</h1>} />
+          <Route
+            exact
+            path="/"
+            render={() => <PaletteList palettes={seedPalettes} />}
+          />
           <Route
             exact
             path="/palette/:id"
