@@ -10,7 +10,7 @@ class PaletteList extends Component {
         <MiniPalette />
         <h1>kolor-ui</h1>
         {palettes.map(p => (
-          <p>
+          <p key={p.id}>
             <Link to={`/palette/${p.id}`}>{p.paletteName}</Link>
           </p>
         ))}
