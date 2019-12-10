@@ -1,8 +1,9 @@
 import React, { Component } from "react";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Palette from "./Palette";
+import PaletteList from "./PaletteList";
 import seedPalettes from "./seedPalettes";
 import { generatePalette } from "./colorHelpers";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 class App extends Component {
   // Parse the Palette array in seedPalettes.js and return the pallete with id === x
