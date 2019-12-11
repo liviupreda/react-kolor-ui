@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 
 import "./ColorBox.css";
@@ -39,7 +40,12 @@ class ColorBox extends Component {
             </div>
             <button className="copy-button">Copy</button>
           </div>
-          <span className="btn-more">More</span>
+          {/* stopPropagation() stops event bubbling to parent elements.
+          We need this as otherwise, once we click on the More button,
+          it would also fire the color Copy & animation  */}
+          <Link to="/" onClick={e => e.stopPropagation()}>
+            <span className="btn-more">More</span>
+          </Link>
         </div>
       </CopyToClipboard>
     );

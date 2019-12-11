@@ -34,6 +34,11 @@ class App extends Component {
               />
             )}
           />
+          <Route
+            exact
+            path="/palette/:palId/:colorId"
+            render={() => <h1>Color Shades Page</h1>}
+          />
         </Switch>
       </Router>
     );
