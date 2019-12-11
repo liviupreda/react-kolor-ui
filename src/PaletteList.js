@@ -34,6 +34,11 @@ const styles = {
 };
 
 class PaletteList extends Component {
+  // Method routing to individual Palette by clicking on MiniPalette
+  // We use props.history instead of Link bc of best practices and styling reasons
+  goToPalette(id) {
+    this.props.history.push(`/palette/${id}`);
+  }
   render() {
     const { palettes, classes } = this.props;
     return (
@@ -44,7 +49,11 @@ class PaletteList extends Component {
           </nav>
           <div className={classes.paletteList}>
             {palettes.map(p => (
-              <MiniPalette {...p} key={p.id} />
+              <MiniPalette
+                {...p}
+                key={p.id}
+                handleClick={() => this.goToPalette(p.id)}
+              />
             ))}
           </div>
         </div>

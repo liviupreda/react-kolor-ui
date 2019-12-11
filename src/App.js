@@ -17,7 +17,11 @@ class App extends Component {
           <Route
             exact
             path="/"
-            render={() => <PaletteList palettes={seedPalettes} />}
+            render={routeProps => (
+              // Pass routeProps down to PaletteList: [App] props.history -->
+              // --> [PaletteList] goToPalette() --> [MiniPalette] onClick
+              <PaletteList palettes={seedPalettes} {...routeProps} />
+            )}
           />
           <Route
             exact
