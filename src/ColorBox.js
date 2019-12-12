@@ -20,7 +20,7 @@ class ColorBox extends Component {
   }
 
   render() {
-    const { name, background } = this.props;
+    const { name, background, paletteId, colorId } = this.props;
     const { copied } = this.state;
     return (
       <CopyToClipboard text={background} onCopy={this.changeCopyState}>
@@ -43,7 +43,10 @@ class ColorBox extends Component {
           {/* stopPropagation() stops event bubbling to parent elements.
           We need this as otherwise, once we click on the More button,
           it would also fire the color Copy & animation  */}
-          <Link to="/" onClick={e => e.stopPropagation()}>
+          <Link
+            to={`/palette/${paletteId}/${colorId}`}
+            onClick={e => e.stopPropagation()}
+          >
             <span className="btn-more">More</span>
           </Link>
         </div>
