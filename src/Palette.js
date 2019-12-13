@@ -39,6 +39,8 @@ class Palette extends Component {
           level={level}
           changeLevel={this.changeLevel}
           handleChange={this.changeColorFormat}
+          // Show the Navbar shade slider
+          showSlider
         />
         <div className="Palette-colors">{colorBoxes}</div>
         <footer className="Palette-footer">

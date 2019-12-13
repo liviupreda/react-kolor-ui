@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import ColorBox from "./ColorBox";
+import Navbar from "./Navbar";
 
 class SingleColorPalette extends Component {
   constructor(props) {
@@ -7,6 +8,12 @@ class SingleColorPalette extends Component {
     // The shades 100- 900 always stay the same, so no need to update state with all colors each time
     // Instead, call helper gatherShades() to get the shades only one time
     this._shades = this.gatherShades(this.props.palette, this.props.colorId);
+    this.state = { colorFormat: "hex" };
+    this.changeColorFormat = this.changeColorFormat.bind(this);
+  }
+
+  changeColorFormat(val) {
+    this.setState({ colorFormat: val });
   }
 
   gatherShades(palette, colorToFilterBy) {
@@ -23,18 +30,23 @@ class SingleColorPalette extends Component {
   }
 
   render() {
+    const { colorFormat } = this.state;
     const colorBoxes = this._shades.map(color => (
       <ColorBox
         key={color.hex}
         name={color.name}
-        background={color.hex}
+        background={color[colorFormat]}
         // hide MORE link when displaying SingleColorPalette
         showLink={false}
       />
     ));
     return (
       <div className="Palette">
-        <h1>Single Color Palette</h1>
+        <Navbar
+          handleChange={this.changeColorFormat}
+          // Hide Navbar shade slider
+          showSlider={false}
+        />
         <div className="Palette-colors">{colorBoxes}</div>
       </div>
     );
