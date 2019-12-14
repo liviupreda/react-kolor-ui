@@ -40,8 +40,8 @@ class SingleColorPalette extends Component {
         key={color.hex}
         name={color.name}
         background={color[colorFormat]}
-        // hide MORE link when displaying SingleColorPalette
-        showLink={false}
+        // hide MORE link & change ColorBox height to 50% when displaying SingleColorPalette;
+        showingFullPalette={false}
       />
     ));
     return (

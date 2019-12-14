@@ -30,8 +30,8 @@ class Palette extends Component {
         key={color.id}
         colorId={color.id}
         paletteId={id}
-        // show MORE link when displaying the entire color Palette
-        showLink
+        // show MORE link and change ColorBox height to 25% when displaying the entire color Palette
+        showingFullPalette
       />
     ));
     return (
