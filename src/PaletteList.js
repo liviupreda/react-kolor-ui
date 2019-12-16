@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import MiniPalette from "./MiniPalette";
 import { withStyles } from "@material-ui/core/styles";
+
 import styles from "./styles/PaletteListStyles";
 
 class PaletteList extends Component {
