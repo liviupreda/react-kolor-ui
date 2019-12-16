@@ -68,6 +68,17 @@ const styles = {
     border: "none",
     textDecoration: "none",
     opacity: "0"
+  },
+  boxContent: {
+    position: "absolute",
+    width: "100%",
+    left: "0",
+    bottom: "0",
+    padding: "10px",
+    color: "black",
+    letterSpacing: "1px",
+    textTransform: "uppercase",
+    fontSize: "12px"
   }
 };
 
@@ -96,23 +107,19 @@ class ColorBox extends Component {
       classes
     } = this.props;
     const { copied } = this.state;
-    // Use chroma to dinamically change text brightness, based on ColorBox background color
-    // const isDarkColor = chroma(background).luminance() <= 0.06;
-    // const isLightColor = chroma(background).luminance() >= 0.6;
     return (
       <CopyToClipboard text={background} onCopy={this.changeCopyState}>
         <div style={{ background }} className={classes.ColorBox}>
           <div
             style={{ background }}
-            // Add show class to display overlay if copied is true
             className={`copy-overlay ${copied && "show"}`}
           />
           <div className={`copy-msg ${copied && "show"}`}>
             <h1>Copied!</h1>
             <p className={classes.copyText}>{background}</p>
           </div>
-          <div className="copy-container">
-            <div className="box-content">
+          <div>
+            <div className={classes.boxContent}>
               <span className={classes.colorName}>{name}</span>
             </div>
             <button className={classes.btnCopy}>Copy</button>
@@ -125,9 +132,6 @@ class ColorBox extends Component {
               <span className={classes.btnMore}>More</span>
             </Link>
           )}
-          {/* stopPropagation() stops event bubbling to parent elements.
-          We need this as otherwise, once we click on the More button,
-          it would also fire the color Copy & animation  */}
         </div>
       </CopyToClipboard>
     );
