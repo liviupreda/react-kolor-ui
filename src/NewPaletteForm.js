@@ -13,6 +13,8 @@ import MenuIcon from "@material-ui/icons/Menu";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import { Button } from "@material-ui/core";
 
+import DraggableColorBox from "./DraggableColorBox";
+
 const drawerWidth = 400;
 
 const useStyles = makeStyles(theme => ({
@@ -160,11 +162,9 @@ function NewPaletteForm() {
         })}
       >
         <div className={classes.drawerHeader} />
-        <ul>
-          {colors.map(c => (
-            <li style={{ backgroundColor: c }}>{c}</li>
-          ))}
-        </ul>
+        {colors.map((c, i) => (
+          <DraggableColorBox color={c} key={i} />
+        ))}
       </main>
     </div>
   );
