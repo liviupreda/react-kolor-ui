@@ -3,7 +3,7 @@ export default {
     display: "flex",
     justifyContent: "flex-start",
     alignItems: "center",
-    height: "6vh"
+    height: "5vh"
   },
 
   logo: {
