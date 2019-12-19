@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState } from "react";
+import { ChromePicker } from "react-color";
 import clsx from "clsx";
 import { makeStyles } from "@material-ui/core/styles";
 import Drawer from "@material-ui/core/Drawer";
@@ -10,9 +11,9 @@ import Divider from "@material-ui/core/Divider";
 import IconButton from "@material-ui/core/IconButton";
 import MenuIcon from "@material-ui/icons/Menu";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
-import { ChromePicker } from "react-color";
+import { Button } from "@material-ui/core";
 
-const drawerWidth = 240;
+const drawerWidth = 400;
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -73,7 +74,7 @@ const useStyles = makeStyles(theme => ({
 function NewPaletteForm() {
   const classes = useStyles();
   // const theme = useTheme();
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = useState(false);
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -103,7 +104,7 @@ function NewPaletteForm() {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" noWrap>
-            Persistent drawer
+            Create New Palette
           </Typography>
         </Toolbar>
       </AppBar>
@@ -121,8 +122,25 @@ function NewPaletteForm() {
             <ChevronLeftIcon />
           </IconButton>
         </div>
-        <ChromePicker />
         <Divider />
+        <Typography variant="h4" noWrap>
+          Design Your Palette
+        </Typography>
+        <div>
+          <Button variant="contained" color="secondary">
+            Clear Palette
+          </Button>
+          <Button variant="contained" color="primary">
+            Random Color
+          </Button>
+        </div>
+        <ChromePicker
+          color="purple"
+          onChangeComplete={newColor => console.log(newColor)}
+        />
+        <Button variant="contained" color="primary">
+          Add Color
+        </Button>
       </Drawer>
       <main
         className={clsx(classes.content, {
