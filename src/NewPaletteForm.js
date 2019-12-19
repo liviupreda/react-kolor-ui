@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { ChromePicker } from "react-color";
+import { ValidatorForm, TextValidator } from "react-material-ui-form-validator";
 import clsx from "clsx";
 import { makeStyles } from "@material-ui/core/styles";
 import Drawer from "@material-ui/core/Drawer";
@@ -80,6 +81,7 @@ function NewPaletteForm() {
   const [open, setOpen] = useState(true);
   const [curColor, setCurColor] = useState("cornflowerblue");
   const [colors, setColors] = useState(["purple", "#e5f422"]);
+  const [newName, setNewName] = useState("");
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -95,6 +97,10 @@ function NewPaletteForm() {
 
   const addNewColor = () => {
     setColors([...colors, curColor]);
+  };
+
+  const handleFormChange = e => {
+    setNewName(e.target.value);
   };
 
   return (
@@ -148,14 +154,17 @@ function NewPaletteForm() {
           </Button>
         </div>
         <ChromePicker color={curColor} onChangeComplete={updateCurColor} />
-        <Button
-          variant="contained"
-          color="primary"
-          style={{ backgroundColor: curColor }}
-          onClick={addNewColor}
-        >
-          Add Color
-        </Button>
+        <ValidatorForm>
+          <TextValidator value={newName} onChange={handleFormChange} />
+          <Button
+            variant="contained"
+            color="primary"
+            style={{ backgroundColor: curColor }}
+            onClick={addNewColor}
+          >
+            Add Color
+          </Button>
+        </ValidatorForm>
       </Drawer>
       <main
         className={clsx(classes.content, {
