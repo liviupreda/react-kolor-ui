@@ -80,8 +80,8 @@ function NewPaletteForm() {
   // const theme = useTheme();
   const [open, setOpen] = useState(true);
   const [curColor, setCurColor] = useState("cornflowerblue");
-  const [colors, setColors] = useState(["purple", "#e5f422"]);
-  const [newName, setNewName] = useState("");
+  const [colors, setColors] = useState([]);
+  const [colorName, setColorName] = useState("");
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -96,11 +96,11 @@ function NewPaletteForm() {
   };
 
   const addNewColor = () => {
-    setColors([...colors, curColor]);
+    setColors([...colors, curColor, colorName]);
   };
 
   const handleFormChange = e => {
-    setNewName(e.target.value);
+    setColorName(e.target.value);
   };
 
   return (
@@ -154,13 +154,13 @@ function NewPaletteForm() {
           </Button>
         </div>
         <ChromePicker color={curColor} onChangeComplete={updateCurColor} />
-        <ValidatorForm>
-          <TextValidator value={newName} onChange={handleFormChange} />
+        <ValidatorForm onSubmit={addNewColor}>
+          <TextValidator value={colorName} onChange={handleFormChange} />
           <Button
             variant="contained"
+            type="submit"
             color="primary"
             style={{ backgroundColor: curColor }}
-            onClick={addNewColor}
           >
             Add Color
           </Button>
