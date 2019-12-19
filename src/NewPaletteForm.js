@@ -96,7 +96,11 @@ function NewPaletteForm() {
   };
 
   const addNewColor = () => {
-    setColors([...colors, curColor, colorName]);
+    const newColor = {
+      color: curColor,
+      name: colorName
+    };
+    setColors([...colors, newColor]);
   };
 
   const handleFormChange = e => {
@@ -173,7 +177,7 @@ function NewPaletteForm() {
       >
         <div className={classes.drawerHeader} />
         {colors.map((c, i) => (
-          <DraggableColorBox color={c} key={i} />
+          <DraggableColorBox color={c.color} name={c.name} key={i} />
         ))}
       </main>
     </div>
