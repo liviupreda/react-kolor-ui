@@ -10,6 +10,7 @@ import Divider from "@material-ui/core/Divider";
 import IconButton from "@material-ui/core/IconButton";
 import MenuIcon from "@material-ui/icons/Menu";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
+import { ChromePicker } from "react-color";
 
 const drawerWidth = 240;
 
@@ -120,7 +121,7 @@ function NewPaletteForm() {
             <ChevronLeftIcon />
           </IconButton>
         </div>
-
+        <ChromePicker />
         <Divider />
       </Drawer>
       <main
