@@ -123,10 +123,13 @@ function NewPaletteForm() {
     setNewName(e.target.value);
   };
 
+  const savePalette = () => {};
+
   return (
     <div className={classes.root}>
       <CssBaseline />
       <AppBar
+        color="default"
         position="fixed"
         className={clsx(classes.appBar, {
           [classes.appBarShift]: open
@@ -145,6 +148,9 @@ function NewPaletteForm() {
           <Typography variant="h6" noWrap>
             Create New Palette
           </Typography>
+          <Button variant="contained" color="primary">
+            Save Palette
+          </Button>
         </Toolbar>
       </AppBar>
       <Drawer
