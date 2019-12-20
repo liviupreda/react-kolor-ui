@@ -126,9 +126,10 @@ function NewPaletteForm(props) {
   };
 
   const handleSubmit = () => {
+    let newName = "New Test Palette";
     const newPalette = {
-      paletteName: "New Test Palette",
-      id: "new-test-palette",
+      paletteName: newName,
+      id: newName.toLowerCase().replace(/ /g, "-"),
       emoji: "🎨",
       colors: colorBox
     };
