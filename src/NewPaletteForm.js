@@ -80,7 +80,7 @@ function NewPaletteForm() {
   // const theme = useTheme();
   const [open, setOpen] = useState(true);
   const [curColor, setCurColor] = useState("cornflowerblue");
-  const [colors, setColors] = useState([]);
+  const [colorBox, setColorBox] = useState([]);
   const [colorName, setColorName] = useState("");
 
   const handleDrawerOpen = () => {
@@ -95,12 +95,12 @@ function NewPaletteForm() {
     setCurColor(newColor.hex);
   };
 
-  const addNewColor = () => {
-    const newColor = {
+  const addNewColorBox = () => {
+    const newColorBox = {
       color: curColor,
       name: colorName
     };
-    setColors([...colors, newColor]);
+    setColorBox([...colorBox, newColorBox]);
   };
 
   const handleFormChange = e => {
@@ -158,8 +158,13 @@ function NewPaletteForm() {
           </Button>
         </div>
         <ChromePicker color={curColor} onChangeComplete={updateCurColor} />
-        <ValidatorForm onSubmit={addNewColor}>
-          <TextValidator value={colorName} onChange={handleFormChange} />
+        <ValidatorForm onSubmit={addNewColorBox}>
+          <TextValidator
+            value={colorName}
+            onChange={handleFormChange}
+            validators={["required", "isEmail"]}
+            errorMessages={["this field is required", "email is not valid"]}
+          />
           <Button
             variant="contained"
             type="submit"
@@ -176,7 +181,7 @@ function NewPaletteForm() {
         })}
       >
         <div className={classes.drawerHeader} />
-        {colors.map((c, i) => (
+        {colorBox.map((c, i) => (
           <DraggableColorBox color={c.color} name={c.name} key={i} />
         ))}
       </main>
