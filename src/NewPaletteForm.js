@@ -91,7 +91,12 @@ function NewPaletteForm() {
         return true;
       else return false;
     });
-  }, [colorBox]);
+
+    ValidatorForm.addValidationRule("isColorUnique", val => {
+      if (colorBox.every(({ color }) => color !== curColor)) return true;
+      else return false;
+    });
+  }, [colorBox, curColor]);
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -172,10 +177,11 @@ function NewPaletteForm() {
           <TextValidator
             value={colorName}
             onChange={handleFormChange}
-            validators={["required", "isColorNameUnique"]}
+            validators={["required", "isColorNameUnique", "isColorUnique"]}
             errorMessages={[
               "Please enter a color name",
-              "Color name must be unique"
+              "Color name must be unique",
+              "Color already used!"
             ]}
           />
           <Button
