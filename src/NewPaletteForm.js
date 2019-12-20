@@ -81,7 +81,7 @@ function NewPaletteForm() {
   const [open, setOpen] = useState(true);
   const [curColor, setCurColor] = useState("cornflowerblue");
   const [colorBox, setColorBox] = useState([{ color: "blue", name: "blue" }]);
-  const [colorName, setColorName] = useState("");
+  const [newName, setNewName] = useState("");
 
   useEffect(() => {
     ValidatorForm.addValidationRule("isColorNameUnique", val => {
@@ -113,13 +113,14 @@ function NewPaletteForm() {
   const addNewColorBox = () => {
     const newColorBox = {
       color: curColor,
-      name: colorName
+      name: newName
     };
     setColorBox([...colorBox, newColorBox]);
+    setNewName("");
   };
 
   const handleFormChange = e => {
-    setColorName(e.target.value);
+    setNewName(e.target.value);
   };
 
   return (
@@ -175,7 +176,7 @@ function NewPaletteForm() {
         <ChromePicker color={curColor} onChangeComplete={updateCurColor} />
         <ValidatorForm onSubmit={addNewColorBox}>
           <TextValidator
-            value={colorName}
+            value={newName}
             onChange={handleFormChange}
             validators={["required", "isColorNameUnique", "isColorUnique"]}
             errorMessages={[
