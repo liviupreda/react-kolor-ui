@@ -15,7 +15,7 @@ import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import { Button } from "@material-ui/core";
 
 import DraggableColorBox from "./DraggableColorBox";
-import { getThemeProps } from "@material-ui/styles";
+// import { getThemeProps } from "@material-ui/styles";
 
 const drawerWidth = 400;
 
@@ -82,7 +82,7 @@ function NewPaletteForm(props) {
   const { savePalette } = props;
   const [open, setOpen] = useState(true);
   const [curColor, setCurColor] = useState("cornflowerblue");
-  const [colorBox, setColorBox] = useState([{ color: "blue", name: "blue" }]);
+  const [colorBox, setColorBox] = useState([{ name: "blue", color: "blue" }]);
   const [newName, setNewName] = useState("");
 
   useEffect(() => {
@@ -114,8 +114,8 @@ function NewPaletteForm(props) {
 
   const addNewColorBox = () => {
     const newColorBox = {
-      color: curColor,
-      name: newName
+      name: newName,
+      color: curColor
     };
     setColorBox([...colorBox, newColorBox]);
     setNewName("");
@@ -128,9 +128,13 @@ function NewPaletteForm(props) {
   const handleSubmit = () => {
     const newPalette = {
       paletteName: "New Test Palette",
+      id: "new-test-palette",
+      emoji: "🎨",
       colors: colorBox
     };
     savePalette(newPalette);
+    // Redirect to homepage on click
+    props.history.push("/");
   };
 
   return (
