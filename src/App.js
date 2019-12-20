@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Palette from "./Palette";
 import PaletteList from "./PaletteList";
@@ -11,12 +11,16 @@ function App() {
   // Parse the Palette array in seedPalettes.js and return the pallete with id === x
   const findPalette = id => seedPalettes.find(palette => palette.id === id);
 
-  // const savePalette = newPalette => console.log(newPalette);
+  const savePalette = newPalette => console.log(newPalette);
 
   return (
     <Router>
       <Switch>
-        <Route exact path="/palette/new" render={() => <NewPaletteForm />} />
+        <Route
+          exact
+          path="/palette/new"
+          render={() => <NewPaletteForm savePalette={savePalette} />}
+        />
         <Route
           exact
           path="/palette/:paletteId/:colorId"

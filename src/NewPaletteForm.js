@@ -15,6 +15,7 @@ import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import { Button } from "@material-ui/core";
 
 import DraggableColorBox from "./DraggableColorBox";
+import { getThemeProps } from "@material-ui/styles";
 
 const drawerWidth = 400;
 
@@ -75,9 +76,10 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-function NewPaletteForm() {
+function NewPaletteForm(props) {
   const classes = useStyles();
   // const theme = useTheme();
+  const { savePalette } = props;
   const [open, setOpen] = useState(true);
   const [curColor, setCurColor] = useState("cornflowerblue");
   const [colorBox, setColorBox] = useState([{ color: "blue", name: "blue" }]);
@@ -123,7 +125,13 @@ function NewPaletteForm() {
     setNewName(e.target.value);
   };
 
-  const savePalette = () => {};
+  const handleSubmit = () => {
+    const newPalette = {
+      paletteName: "New Test Palette",
+      colors: colorBox
+    };
+    savePalette(newPalette);
+  };
 
   return (
     <div className={classes.root}>
@@ -148,7 +156,7 @@ function NewPaletteForm() {
           <Typography variant="h6" noWrap>
             Create New Palette
           </Typography>
-          <Button variant="contained" color="primary">
+          <Button variant="contained" color="primary" onClick={handleSubmit}>
             Save Palette
           </Button>
         </Toolbar>
