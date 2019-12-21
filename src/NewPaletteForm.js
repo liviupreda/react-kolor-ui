@@ -171,6 +171,8 @@ function NewPaletteForm(props) {
               value={newPaletteName}
               name="newPaletteName"
               onChange={handlePaletteFormChange}
+              validators={["required"]}
+              errorMessages={["Please enter a palette name"]}
             />
             <Button variant="contained" color="primary" type="submit">
               Save Palette
