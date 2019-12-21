@@ -83,7 +83,8 @@ function NewPaletteForm(props) {
   const [open, setOpen] = useState(true);
   const [curColor, setCurColor] = useState("cornflowerblue");
   const [colorBox, setColorBox] = useState([{ name: "blue", color: "blue" }]);
-  const [newName, setNewName] = useState("");
+  const [newColorName, setNewColorName] = useState("");
+  const [newPaletteName, setNewPaletteName] = useState("");
 
   useEffect(() => {
     ValidatorForm.addValidationRule("isColorNameUnique", val => {
@@ -114,15 +115,19 @@ function NewPaletteForm(props) {
 
   const addNewColorBox = () => {
     const newColorBox = {
-      name: newName,
+      name: newColorName,
       color: curColor
     };
     setColorBox([...colorBox, newColorBox]);
-    setNewName("");
+    setNewColorName("");
   };
 
-  const handleFormChange = e => {
-    setNewName(e.target.value);
+  const handleColorFormChange = e => {
+    setNewColorName(e.target.value);
+  };
+
+  const handlePaletteFormChange = e => {
+    setNewPaletteName(e.target.value);
   };
 
   const handleSubmit = () => {
@@ -161,9 +166,17 @@ function NewPaletteForm(props) {
           <Typography variant="h6" noWrap>
             Create New Palette
           </Typography>
-          <Button variant="contained" color="primary" onClick={handleSubmit}>
-            Save Palette
-          </Button>
+          <ValidatorForm onSubmit={handleSubmit}>
+            <TextValidator
+              label="Palette Name"
+              value={newPaletteName}
+              name="newPaletteName"
+              onChange={handlePaletteFormChange}
+            />
+            <Button variant="contained" color="primary" type="submit">
+              Save Palette
+            </Button>
+          </ValidatorForm>
         </Toolbar>
       </AppBar>
       <Drawer
@@ -195,8 +208,9 @@ function NewPaletteForm(props) {
         <ChromePicker color={curColor} onChangeComplete={updateCurColor} />
         <ValidatorForm onSubmit={addNewColorBox}>
           <TextValidator
-            value={newName}
-            onChange={handleFormChange}
+            value={newColorName}
+            name="newColorName"
+            onChange={handleColorFormChange}
             validators={["required", "isColorNameUnique", "isColorUnique"]}
             errorMessages={[
               "Please enter a color name",
