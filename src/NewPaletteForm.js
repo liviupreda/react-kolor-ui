@@ -131,10 +131,9 @@ function NewPaletteForm(props) {
   };
 
   const handleSubmit = () => {
-    let newName = "New Test Palette";
     const newPalette = {
-      paletteName: newName,
-      id: newName.toLowerCase().replace(/ /g, "-"),
+      paletteName: newPaletteName,
+      id: newPaletteName.toLowerCase().replace(/ /g, "-"),
       emoji: "🎨",
       colors: colorBox
     };
@@ -208,6 +207,7 @@ function NewPaletteForm(props) {
         <ChromePicker color={curColor} onChangeComplete={updateCurColor} />
         <ValidatorForm onSubmit={addNewColorBox}>
           <TextValidator
+            label="Color Name"
             value={newColorName}
             name="newColorName"
             onChange={handleColorFormChange}
