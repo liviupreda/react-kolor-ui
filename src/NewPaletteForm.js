@@ -99,7 +99,17 @@ function NewPaletteForm(props) {
       if (colorBox.every(({ color }) => color !== curColor)) return true;
       else return false;
     });
-  }, [colorBox, curColor]);
+
+    ValidatorForm.addValidationRule("isPaletteNameUnique", val => {
+      if (
+        props.palettes.every(
+          ({ paletteName }) => paletteName.toLowerCase() !== val.toLowerCase()
+        )
+      )
+        return true;
+      else return false;
+    });
+  }, [colorBox, curColor, props.palettes]);
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -171,8 +181,11 @@ function NewPaletteForm(props) {
               value={newPaletteName}
               name="newPaletteName"
               onChange={handlePaletteFormChange}
-              validators={["required"]}
-              errorMessages={["Please enter a palette name"]}
+              validators={["required", "isPaletteNameUnique"]}
+              errorMessages={[
+                "Please enter a palette name",
+                "Palette name must be unique"
+              ]}
             />
             <Button variant="contained" color="primary" type="submit">
               Save Palette
