@@ -15,6 +15,7 @@ import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import { Button } from "@material-ui/core";
 
 import DraggableColorBox from "./DraggableColorBox";
+import DraggableColorList from "./DraggableColorList";
 // import { getThemeProps } from "@material-ui/styles";
 
 const drawerWidth = 400;
@@ -253,14 +254,10 @@ function NewPaletteForm(props) {
         })}
       >
         <div className={classes.drawerHeader} />
-        {colorBox.map(c => (
-          <DraggableColorBox
-            key={c.name}
-            color={c.color}
-            name={c.name}
-            handleClick={() => removeColorBox(c.name)}
-          />
-        ))}
+        <DraggableColorList
+          colorBoxes={colorBox}
+          removeColorBox={removeColorBox}
+        />
       </main>
     </div>
   );
