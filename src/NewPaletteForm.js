@@ -13,9 +13,10 @@ import IconButton from "@material-ui/core/IconButton";
 import MenuIcon from "@material-ui/icons/Menu";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import { Button } from "@material-ui/core";
+import { arrayMove } from "react-sortable-hoc";
 
-import DraggableColorBox from "./DraggableColorBox";
 import DraggableColorList from "./DraggableColorList";
+
 // import { getThemeProps } from "@material-ui/styles";
 
 const drawerWidth = 400;
@@ -157,6 +158,10 @@ function NewPaletteForm(props) {
     setColorBox(colorBox.filter(c => c.name !== colorName));
   };
 
+  const onSortEnd = ({ oldIndex, newIndex }) => {
+    setColorBox(arrayMove(colorBox, oldIndex, newIndex));
+  };
+
   return (
     <div className={classes.root}>
       <CssBaseline />
@@ -256,7 +261,9 @@ function NewPaletteForm(props) {
         <div className={classes.drawerHeader} />
         <DraggableColorList
           colorBoxes={colorBox}
-          removeColorBox={removeColorBox}
+          removeColorBoxes={removeColorBox}
+          axis="xy"
+          onSortEnd={onSortEnd}
         />
       </main>
     </div>
