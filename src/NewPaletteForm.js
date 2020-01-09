@@ -84,7 +84,7 @@ function NewPaletteForm(props) {
   const { savePalette } = props;
   const [open, setOpen] = useState(true);
   const [curColor, setCurColor] = useState("cornflowerblue");
-  const [colorBox, setColorBox] = useState([{ name: "blue", color: "blue" }]);
+  const [colorBox, setColorBox] = useState(props.palettes[0].colors);
   const [newColorName, setNewColorName] = useState("");
   const [newPaletteName, setNewPaletteName] = useState("");
 
