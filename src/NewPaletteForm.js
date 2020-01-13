@@ -142,6 +142,8 @@ function NewPaletteForm(props) {
     setNewPaletteName(e.target.value);
   };
 
+  const clearColorBoxes = () => setColorBox([]);
+
   const handleSubmit = () => {
     const newPalette = {
       paletteName: newPaletteName,
@@ -222,7 +224,11 @@ function NewPaletteForm(props) {
           Design Your Palette
         </Typography>
         <div>
-          <Button variant="contained" color="secondary">
+          <Button
+            variant="contained"
+            color="secondary"
+            onClick={clearColorBoxes}
+          >
             Clear Palette
           </Button>
           <Button variant="contained" color="primary">
