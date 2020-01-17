@@ -8,7 +8,7 @@ function DraggableColorList({ colorBoxes, removeColorBoxes }) {
       {colorBoxes.map((c, i) => (
         <DraggableColorBox
           index={i}
-          key={c.name}
+          key={i}
           color={c.color}
           name={c.name}
           handleClick={() => removeColorBoxes(c.name)}
