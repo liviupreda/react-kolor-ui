@@ -144,6 +144,15 @@ function NewPaletteForm(props) {
 
   const clearColorBoxes = () => setColorBox([]);
 
+  const addRandomColor = () => {
+    // The flat() method creates a new array with
+    // all sub-array elements concatenated into it recursively up to the specified depth.
+    const allColors = props.palettes.map(p => p.colors).flat();
+    let rand = Math.floor(Math.random() * allColors.length);
+    const randomColor = allColors[rand];
+    setColorBox([...colorBox, randomColor]);
+  };
+
   const handleSubmit = () => {
     const newPalette = {
       paletteName: newPaletteName,
@@ -231,7 +240,7 @@ function NewPaletteForm(props) {
           >
             Clear Palette
           </Button>
-          <Button variant="contained" color="primary">
+          <Button variant="contained" color="primary" onClick={addRandomColor}>
             Random Color
           </Button>
         </div>
