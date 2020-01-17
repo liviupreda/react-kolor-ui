@@ -78,7 +78,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-function NewPaletteForm(props) {
+function NewPaletteForm(props, { maxColors = 20 }) {
   const classes = useStyles();
   // const theme = useTheme();
   const { savePalette } = props;
@@ -87,6 +87,8 @@ function NewPaletteForm(props) {
   const [colorBox, setColorBox] = useState(props.palettes[0].colors);
   const [newColorName, setNewColorName] = useState("");
   const [newPaletteName, setNewPaletteName] = useState("");
+
+  const paletteIsFull = colorBox.length >= maxColors;
 
   useEffect(() => {
     ValidatorForm.addValidationRule("isColorNameUnique", val => {
@@ -240,7 +242,12 @@ function NewPaletteForm(props) {
           >
             Clear Palette
           </Button>
-          <Button variant="contained" color="primary" onClick={addRandomColor}>
+          <Button
+            variant="contained"
+            color="primary"
+            onClick={addRandomColor}
+            disabled={paletteIsFull}
+          >
             Random Color
           </Button>
         </div>
@@ -262,9 +269,10 @@ function NewPaletteForm(props) {
             variant="contained"
             type="submit"
             color="primary"
-            style={{ backgroundColor: curColor }}
+            disabled={paletteIsFull}
+            style={{ backgroundColor: paletteIsFull ? "gray" : curColor }}
           >
-            Add Color
+            {paletteIsFull ? "Palette Full" : "Add Color"}
           </Button>
         </ValidatorForm>
       </Drawer>
