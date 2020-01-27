@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react";
+import DraggableColorList from "./DraggableColorList";
+import { Link } from "react-router-dom";
 import { ChromePicker } from "react-color";
 import { ValidatorForm, TextValidator } from "react-material-ui-form-validator";
 import clsx from "clsx";
@@ -14,8 +16,6 @@ import MenuIcon from "@material-ui/icons/Menu";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import { Button } from "@material-ui/core";
 import { arrayMove } from "react-sortable-hoc";
-
-import DraggableColorList from "./DraggableColorList";
 
 // import { getThemeProps } from "@material-ui/styles";
 
@@ -213,6 +213,11 @@ function NewPaletteForm(props, { maxColors = 20 }) {
             <Button variant="contained" color="primary" type="submit">
               Save Palette
             </Button>
+            <Link to="/">
+              <Button variant="contained" color="secondary">
+                Go Back
+              </Button>
+            </Link>
           </ValidatorForm>
         </Toolbar>
       </AppBar>
